@@ -24,10 +24,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: eu-west-1
+          role-to-assume: arn:aws:iam::377449198785:user/github-actions
           role-skip-session-tagging: true
-          role-session-name: MySessionName
+          role-session-name: GitHubActions-Secondary-Workflow
       - name: SAM Validate
         run: |
           sam validate
