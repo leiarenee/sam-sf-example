@@ -10,13 +10,6 @@ jobs:
       env-name: ${{ steps.env-name.outputs.environment }}
     steps:
       - uses: actions/checkout@v2
-      - name: Install Dependencies with Apt Get
-        run: |
-          sudo apt-get update
-          sudo apt-get install python3.8 jq -y
-      - name: Install Pip Dependencies
-        run: |
-          pip3 install pytest
       - name: Configure AWS credentials
         id: creds
         uses: aws-actions/configure-aws-credentials@v1
@@ -25,9 +18,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           # aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: eu-west-1
-          role-to-assume: arn:aws:iam::377449198785:user/github-actions
+          role-to-assume: arn:aws:iam::377449198785:role/github-actions-step-functions
           role-skip-session-tagging: true
           role-session-name: GitHubActions-Secondary-Workflow
+      - name: Install Dependencies with Apt Get
+        run: |
+          sudo apt-get update
+          sudo apt-get install python3.8 jq -y
+      - name: Install Pip Dependencies
+        run: |
+          pip3 install pytest
       - name: SAM Validate
         run: |
           sam validate
