@@ -27,6 +27,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           role-skip-session-tagging: true
+          role-session-name: MySessionName
       - name: SAM Validate
         run: |
           sam validate
