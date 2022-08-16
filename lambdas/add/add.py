@@ -23,7 +23,7 @@ def lambda_handler(event, context):
        "result": int(result)
    }
 
-   print("hello")
+   print("hello world")
    
    event['input'] = response
    
